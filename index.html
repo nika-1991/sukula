@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>სუკულა — ადმინი</title>
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap hbar">
+    <a class="brand" href="/"><img src="logo.png" alt="სუკულა" class="logo"><span class="tag">// admin</span></a>
+    <div class="hlinks">
+      <a class="ghost" href="/">↗ მაღაზია</a>
+      <button class="btn-sm" id="logoutBtn" style="display:none">გასვლა</button>
+    </div>
+  </div>
+</header>
+
+<!-- login -->
+<div id="loginView">
+  <div class="login-box">
+    <h1>ადმინი</h1>
+    <p>შეიყვანე პაროლი პროდუქტებისა და შეკვეთების სამართავად.</p>
+    <div class="field"><label>პაროლი</label><input id="pw" type="password"></div>
+    <button class="btn-primary" id="loginBtn">შესვლა</button>
+    <p class="muted-note" id="loginErr" style="color:var(--danger);display:none"></p>
+  </div>
+</div>
+
+<!-- dashboard -->
+<main id="dashView" class="admin-wrap" style="display:none;padding-top:24px">
+  <div class="tabs">
+    <button class="tab on" data-tab="products">პროდუქტები</button>
+    <button class="tab" data-tab="orders">შეკვეთები</button>
+  </div>
+
+  <section class="panel on" id="panel-products">
+    <div class="bar">
+      <h2>პროდუქტები</h2>
+      <button class="btn-sm solid" id="addProductBtn">+ ახალი პროდუქტი</button>
+    </div>
+    <div id="productList"></div>
+  </section>
+
+  <section class="panel" id="panel-orders">
+    <div class="bar">
+      <h2>შეკვეთები</h2>
+      <div style="display:flex;gap:10px">
+        <button class="btn-sm" id="refreshOrders">განახლება</button>
+        <button class="btn-sm solid" id="exportBtn">⬇ ექსელად ჩამოტვირთვა</button>
+      </div>
+    </div>
+    <div id="orderList"></div>
+  </section>
+</main>
+
+<!-- product modal -->
+<div class="modal" id="prodModal">
+  <div class="modal-box">
+    <div class="mh"><h3 id="modalTitle">ახალი პროდუქტი</h3><button class="x" id="modalClose">×</button></div>
+    <div class="mb">
+      <input type="hidden" id="fId">
+      <div class="field">
+        <label>ტიპი</label>
+        <select id="fType">
+          <option value="plant">მცენარე</option>
+          <option value="pot">ქოთანი</option>
+          <option value="pkg">შეფუთვა</option>
+        </select>
+      </div>
+      <div class="two">
+        <div class="field"><label>სახელი</label><input id="fName"></div>
+        <div class="field"><label>ფასი (₾)</label><input id="fPrice" type="number" min="0" step="1"></div>
+      </div>
+
+      <!-- plant fields -->
+      <div id="grpPlant">
+        <div class="field">
+          <label>ვიზუალი (ფორმა)</label>
+          <select id="fShapePlant"></select>
+        </div>
+        <div class="two">
+          <div class="field"><label>სიმაღლე</label><input id="fH" placeholder="მაგ. 12 სმ"></div>
+          <div class="field"><label>განათება</label><input id="fLight" placeholder="მაგ. მკვეთრი"></div>
+        </div>
+        <div class="field"><label>მორწყვა</label><input id="fWater" placeholder="მაგ. იშვიათი"></div>
+      </div>
+
+      <!-- pot fields -->
+      <div id="grpPot">
+        <div class="field"><label>ფერი</label><input id="fColor" type="color" value="#C77B53" style="height:46px;padding:4px"></div>
+      </div>
+
+      <!-- pkg fields -->
+      <div id="grpPkg">
+        <div class="field">
+          <label>შეფუთვის სტილი</label>
+          <select id="fShapePkg">
+            <option value="plain">უბრალო (ქოთანი)</option>
+            <option value="kraft">ქრაფტ ბაფთა</option>
+            <option value="premium">სასაჩუქრე ბაფთა + ყუთი</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="two">
+        <div class="field"><label>რიგი (sort)</label><input id="fSort" type="number" value="0"></div>
+        <div class="field"><label>აქტიური</label>
+          <select id="fActive"><option value="1">კი — ჩანს მაღაზიაში</option><option value="0">არა — დამალული</option></select>
+        </div>
+      </div>
+
+      <div style="margin-top:8px"><div id="modalPreview" style="width:120px;height:144px;margin:0 auto"></div></div>
+      <button class="btn-primary" id="saveProduct" style="margin-top:14px">შენახვა</button>
+      <p class="muted-note" id="modalErr" style="color:var(--danger);display:none"></p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="svg.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
