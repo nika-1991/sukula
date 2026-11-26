@@ -1,0 +1,28 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: sukula
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/products
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: ADMIN_PASSWORD
+        sync: false          # Render-ი შექმნისას გკითხავს
+      - key: SESSION_SECRET
+        generateValue: true  # Render-ი თავად შექმნის
+      - key: ORDER_EMAIL
+        sync: false
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+    # ბაზის მუდმივად შესანახად (ფასიანი გეგმა): plan: starter და
+    # disk: { name: data, mountPath: /opt/render/project/src/data, sizeGB: 1 }
