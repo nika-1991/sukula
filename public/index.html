@@ -4,101 +4,139 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>სუკულა — ააწყვე შენი სუკულენტი</title>
+<meta name="description" content="სუკულენტების მაღაზია — მცენარე, ქოთანი და შეფუთვა.">
 <link rel="icon" href="favicon.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="shop.css">
 </head>
 <body>
-
 <header>
   <div class="wrap hbar">
-    <a class="brand" href="/"><img src="logo.png" alt="სუკულა" class="logo"><span class="tag">// succulent studio</span></a>
-    <div class="hlinks">
-      <a class="ghost" href="/admin">ადმინი</a>
-      <button class="cart-btn" id="openCart" aria-label="კალათის გახსნა">
-        კალათა <span class="cnt" id="cartCount">0</span>
-      </button>
-    </div>
+    <a class="brand" href="/">
+      <img id="logoImg" src="logo.png" alt="სუკულა" style="height:56px;width:auto;display:block;object-fit:contain">
+      <div id="logoFallback" style="display:none;align-items:center;gap:10px">
+        <div class="brand-ico">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 16Q6.5 10 6.5 7Q9 2.5 11.5 7Q11.5 10 9 16Z" fill="white"/>
+            <path d="M9 12Q5 10 4 7.5Q7 5.5 9 9Z" fill="white" opacity=".6"/>
+            <path d="M9 12Q13 10 14 7.5Q11 5.5 9 9Z" fill="white" opacity=".6"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="name">სუკულა</div>
+          <div class="sub">// succulent studio</div>
+        </div>
+      </div>
+    </a>
+    <button class="lang-btn" id="langBtn">EN</button>
+    <button class="cart-btn" id="openCart">
+      <span class="cart-cnt" id="cartCount">0</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1h2l2.4 7.4a1 1 0 0 0 .96.6H12a1 1 0 0 0 .96-.72L14 4H4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="13.5" r="1" fill="currentColor"/><circle cx="11.5" cy="13.5" r="1" fill="currentColor"/></svg>
+    </button>
   </div>
 </header>
 
 <main>
-  <section class="wrap intro">
-    <p class="eyebrow">აწყობილი ხელით · მიწოდება თბილისში</p>
-    <h1>ააწყვე <em>შენი</em> სუკულენტი.</h1>
-    <p class="sub">აირჩიე მცენარე, ქოთანი და შეფუთვა. ცოცხალ პრევიუში ნახე, როგორი გამოვა — შემდეგ კი დაამატე კალათაში.</p>
+<section class="wrap intro">
   </section>
 
-  <section class="wrap builder">
-    <div class="stage">
-      <div class="specimen">
-        <div class="spec-head">
-          <span class="id" id="specId">SPECIMEN — 000</span>
-          <span class="live"><span class="dot"></span>ცოცხალი პრევიუ</span>
-        </div>
-        <div class="viewer">
-          <div id="previewWrap" aria-live="polite"></div>
-          <div class="crosshair">
-            <span class="ch-tl">+</span><span class="ch-tr">+</span>
-            <span class="ch-bl">+</span><span class="ch-br" id="dimTag">— სმ</span>
+<section class="wrap builder">
+  <div class="stage">
+    <div class="specimen">
+      <div class="spec-head">
+        
+        <span class="live-badge"><span class="dot"></span><span data-i18n="livePrev">ცოცხალი პრევიუ</span></span>
+      </div>
+      <div class="viewer">
+        <div id="previewWrap"></div>
+        <span class="dim-tag" id="dimTag">—</span>
+      </div>
+      <div class="readout">
+        <div class="metric">
+          <div class="k">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="1" x2="5" y2="3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="5" y1="7" x2="5" y2="9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="1" y1="5" x2="3" y2="5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="7" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="5" cy="5" r="2" stroke="currentColor" stroke-width="1.1"/></svg>
+            <span data-i18n="mH_lbl">სიმაღლე</span>
           </div>
+          <div class="v" id="mH">—</div>
         </div>
-        <div class="readout">
-          <div class="metric"><div class="k">სიმაღლე</div><div class="v" id="mH">—</div></div>
-          <div class="metric"><div class="k">განათება</div><div class="v" id="mL">—</div></div>
-          <div class="metric"><div class="k">მორწყვა</div><div class="v" id="mW">—</div></div>
+        <div class="metric">
+          <div class="k">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="2.5" fill="#F9C846" opacity=".9"/><path d="M5 0.5v1M5 8.5v1M0.5 5h1M8.5 5h1M1.8 1.8l.7.7M7.5 7.5l.7.7M8.2 1.8l-.7.7M2.5 7.5l-.7.7" stroke="#F9A825" stroke-width="1" stroke-linecap="round"/></svg>
+            <span data-i18n="mL_lbl">განათება</span>
+          </div>
+          <div class="v" id="mL">—</div>
         </div>
-        <div class="buy">
-          <div class="price"><span class="lab">სულ</span><span class="num" id="total">₾0</span></div>
-          <button class="add" id="addBtn">კალათაში დამატება</button>
+        <div class="metric">
+          <div class="k">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1.5Q8 5 8 7a3 3 0 0 1-6 0Q2 5 5 1.5Z" stroke="#5B9BD5" stroke-width="1.1" fill="#5B9BD5" fill-opacity=".2"/></svg>
+            <span data-i18n="mW_lbl">მორწყვა</span>
+          </div>
+          <div class="v" id="mW">—</div>
         </div>
       </div>
+      <div class="buy">
+        <div class="price-wrap">
+          <span class="lab" data-i18n="sumLabel">სულ</span>
+          <span class="num" id="total">₾0</span>
+        </div>
+        <button class="add-btn" id="addBtn" data-i18n="addCart">კალათაში დამატება</button>
+      </div>
     </div>
+  </div>
 
-    <div class="steps">
-      <div class="step">
-        <div class="shead"><span class="no">01</span><h2>მცენარე</h2><span class="hint">აირჩიე ერთი</span></div>
-        <div class="opts" id="plantOpts"></div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-head">
+        <span class="step-num">01</span>
+        <h2 class="step-title" data-i18n="plant">მცენარე</h2>
+        
       </div>
-      <div class="step">
-        <div class="shead"><span class="no">02</span><h2>ქოთანი</h2><span class="hint">აირჩიე ერთი</span></div>
-        <div class="opts" id="potOpts"></div>
-      </div>
-      <div class="step">
-        <div class="shead"><span class="no">03</span><h2>შეფუთვა</h2><span class="hint">სურვილისამებრ</span></div>
-        <div class="opts" id="pkgOpts"></div>
+      <div class="car-wrap">
+        <button class="arrow" onclick="scrollCar('plantCar',-1)">&#8249;</button>
+        <div class="car-scroll" id="plantCar"></div>
+        <button class="arrow" onclick="scrollCar('plantCar',1)">&#8250;</button>
       </div>
     </div>
-  </section>
+    <div class="step">
+      <div class="step-head">
+        <span class="step-num">02</span>
+        <h2 class="step-title" data-i18n="pot">ქოთანი</h2>
+        
+      </div>
+      <div class="car-wrap">
+        <button class="arrow" onclick="scrollCar('potCar',-1)">&#8249;</button>
+        <div class="car-scroll" id="potCar"></div>
+        <button class="arrow" onclick="scrollCar('potCar',1)">&#8250;</button>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head">
+        <span class="step-num">03</span>
+        <h2 class="step-title" data-i18n="pkg">შეფუთვა</h2>
+      </div>
+      <div class="car-wrap">
+        <button class="arrow" onclick="scrollCar('pkgCar',-1)">&#8249;</button>
+        <div class="car-scroll" id="pkgCar"></div>
+        <button class="arrow" onclick="scrollCar('pkgCar',1)">&#8250;</button>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section class="strip">
-    <div class="wrap">
-      <div class="it"><span>↳</span><b>უფასო მიწოდება</b>&nbsp;თბილისში ₾80-დან</div>
-      <div class="it"><span>↳</span><b>14 დღის გარანტია</b>&nbsp;ცოცხალ მცენარეზე</div>
-      <div class="it"><span>↳</span><b>მოვლის ბარათი</b>&nbsp;ყველა შეკვეთასთან</div>
-    </div>
-  </section>
 
-  <footer class="wrap">
-    <div class="fgrid">
-      <div>
-        <img src="logo.png" alt="სუკულა" class="logo logo-lg">
-        <p class="fnote">პატარა სტუდია, სადაც ყველა სუკულენტი ცალკეა აწყობილი — შენი არჩევანით.</p>
-      </div>
-      <div class="fmeta">© 2026 სუკულა · თბილისი<br>hello@sukula.ge</div>
-    </div>
-  </footer>
+<footer class="wrap">
+  <div class="fgrid">
+    <div class="strip-it" data-i18n="delivery" data-i18n-html="1">↳ <b>უფასო მიწოდება</b>&nbsp;₾80-დან</div>
+    <div class="f-links"><span data-i18n="contact">კონტაქტი</span></div>
+  </div>
+</footer>
 </main>
 
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer" aria-label="კალათა" aria-hidden="true">
-  <div class="dhead"><h3 id="drawerTitle">კალათა</h3><button class="x" id="closeCart" aria-label="დახურვა">×</button></div>
-  <div class="ditems" id="drawerBody"></div>
-  <div class="dfoot" id="drawerFoot"></div>
+  <div class="d-head"><h3 id="drawerTitle">კალათა</h3><button class="d-close" id="closeCart">×</button></div>
+  <div class="d-items" id="drawerBody"></div>
+  <div class="d-foot" id="drawerFoot"></div>
 </aside>
-
 <div class="toast" id="toast"></div>
 
 <script src="svg.js"></script>
